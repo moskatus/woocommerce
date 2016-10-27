@@ -196,7 +196,10 @@ class WC_Meta_Box_Order_Data {
 					}
 
 					if ( $ip_address = get_post_meta( $post->ID, '_customer_ip_address', true ) ) {
-						echo __( 'Customer IP', 'woocommerce' ) . ': <span class="woocommerce-Order-customerIP">' . esc_html( $ip_address ) . '</span>';
+						printf(
+							__( 'Customer IP: %s', 'woocommerce' ),
+							'<span class="woocommerce-Order-customerIP">' . esc_html( $ip_address ) . '</span>'
+						);
 					}
 				?></p>
 
@@ -210,9 +213,9 @@ class WC_Meta_Box_Order_Data {
 
 						<p class="form-field form-field-wide wc-order-status"><label for="order_status"><?php _e( 'Order status:', 'woocommerce' ) ?> <?php
 							if ( $order->needs_payment() ) {
-								printf( '<a href="%s">%s &rarr;</a>',
+								printf( '<a href="%s">%s</a>',
 									esc_url( $order->get_checkout_payment_url() ),
-									__( 'Customer payment page', 'woocommerce' )
+									__( 'Customer payment page &rarr;', 'woocommerce' )
 								);
 							}
 						?></label>
@@ -233,9 +236,9 @@ class WC_Meta_Box_Order_Data {
 										'post_type'      => 'shop_order',
 										'_customer_user' => absint( $order->get_user_id() ),
 									);
-									printf( '<a href="%s">%s &rarr;</a>',
+									printf( '<a href="%s">%s</a>',
 										esc_url( add_query_arg( $args, admin_url( 'edit.php' ) ) ),
-										__( 'View other orders', 'woocommerce' )
+										__( 'View other orders &rarr;', 'woocommerce' )
 									);
 								}
 							?></label>
@@ -268,9 +271,9 @@ class WC_Meta_Box_Order_Data {
 							echo '<div class="address">';
 
 								if ( $order->get_formatted_billing_address() ) {
-									echo '<p><strong>' . __( 'Address', 'woocommerce' ) . ':</strong>' . wp_kses( $order->get_formatted_billing_address(), array( 'br' => array() ) ) . '</p>';
+									echo '<p><strong>' . __( 'Address:', 'woocommerce' ) . '</strong>' . wp_kses( $order->get_formatted_billing_address(), array( 'br' => array() ) ) . '</p>';
 								} else {
-									echo '<p class="none_set"><strong>' . __( 'Address', 'woocommerce' ) . ':</strong> ' . __( 'No billing address set.', 'woocommerce' ) . '</p>';
+									echo '<p class="none_set"><strong>' . __( 'Address:', 'woocommerce' ) . '</strong> ' . __( 'No billing address set.', 'woocommerce' ) . '</p>';
 								}
 
 								foreach ( self::$billing_fields as $key => $field ) {
@@ -353,9 +356,9 @@ class WC_Meta_Box_Order_Data {
 							echo '<div class="address">';
 
 								if ( $order->get_formatted_shipping_address() ) {
-									echo '<p><strong>' . __( 'Address', 'woocommerce' ) . ':</strong>' . wp_kses( $order->get_formatted_shipping_address(), array( 'br' => array() ) ) . '</p>';
+									echo '<p><strong>' . __( 'Address:', 'woocommerce' ) . '</strong>' . wp_kses( $order->get_formatted_shipping_address(), array( 'br' => array() ) ) . '</p>';
 								} else {
-									echo '<p class="none_set"><strong>' . __( 'Address', 'woocommerce' ) . ':</strong> ' . __( 'No shipping address set.', 'woocommerce' ) . '</p>';
+									echo '<p class="none_set"><strong>' . __( 'Address:', 'woocommerce' ) . '</strong> ' . __( 'No shipping address set.', 'woocommerce' ) . '</p>';
 								}
 
 								if ( ! empty( self::$shipping_fields ) ) {
@@ -373,7 +376,7 @@ class WC_Meta_Box_Order_Data {
 								}
 
 								if ( apply_filters( 'woocommerce_enable_order_notes_field', 'yes' == get_option( 'woocommerce_enable_order_comments', 'yes' ) ) && $post->post_excerpt ) {
-									echo '<p><strong>' . __( 'Customer provided note', 'woocommerce' ) . ':</strong> ' . nl2br( esc_html( $post->post_excerpt ) ) . '</p>';
+									echo '<p><strong>' . __( 'Customer provided note:', 'woocommerce' ) . '</strong> ' . nl2br( esc_html( $post->post_excerpt ) ) . '</p>';
 								}
 
 							echo '</div>';

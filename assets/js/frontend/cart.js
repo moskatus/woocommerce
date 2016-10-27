@@ -124,7 +124,6 @@ jQuery( function( $ ) {
 		if ( ! $target ) {
 			$target = $( '.woocommerce-cart-form' );
 		}
-		$( '.woocommerce-error, .woocommerce-message, .woocommerce-info' ).remove();
 		$target.before( html_element );
 	};
 
@@ -427,6 +426,7 @@ jQuery( function( $ ) {
 				data:     data,
 				dataType: 'html',
 				success: function( response ) {
+					$( '.woocommerce-error, .woocommerce-message, .woocommerce-info' ).remove();
 					show_notice( response );
 					$( document.body ).trigger( 'applied_coupon' );
 				},
@@ -463,6 +463,7 @@ jQuery( function( $ ) {
 				data:     data,
 				dataType: 'html',
 				success: function( response ) {
+					$( '.woocommerce-error, .woocommerce-message, .woocommerce-info' ).remove();
 					show_notice( response );
 					$( document.body ).trigger( 'removed_coupon' );
 					unblock( $wrapper );

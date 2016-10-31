@@ -137,6 +137,15 @@ jQuery( function( $ ) {
 				$( '.woocommerce-product-gallery__image' ).trigger('zoom.destroy');
 				$( '.woocommerce-product-gallery__image' ).zoom();
 			}
+			//Ativa o Zoom em produtos variaveis o #PACOR é um atributo de COR
+			if($('#pa_cor').click(function(){
+			// But only zoom if the img is larger than its container and the visitor is not on a touch device.
+			if ( ( $( '.woocommerce-product-gallery__image img' ).attr( 'width' ) > $( '.woocommerce-product-gallery' ).width() ) && ( ! wc_product_gallery.is_touch_device() ) ) {
+				$( '.woocommerce-product-gallery__image' ).trigger('zoom.destroy');
+				$( '.woocommerce-product-gallery__image' ).zoom();
+			}
+                    }
+                    )); 
 		},
 
 		/**

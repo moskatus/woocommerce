@@ -133,10 +133,13 @@ jQuery( function( $ ) {
 		 */
 		init_zoom: function() {
 			// But only zoom if the img is larger than its container and the visitor is not on a touch device.
+			if($('#pa_cor').click(function(){ //PACOR is attribute Color
 			if ( ( $( '.woocommerce-product-gallery__image img' ).attr( 'width' ) > $( '.woocommerce-product-gallery' ).width() ) && ( ! wc_product_gallery.is_touch_device() ) ) {
 				$( '.woocommerce-product-gallery__image' ).trigger('zoom.destroy');
 				$( '.woocommerce-product-gallery__image' ).zoom();
 			}
+				}
+                    ));
 		},
 
 		/**

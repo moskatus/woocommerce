@@ -150,7 +150,7 @@ jQuery( function( $ ) {
 			if ( $slides.length > 0 ) {
 				$slides.each( function( i, el ) {
 					var img = $( el ).find( 'img' ),
-						large_image_src = img.attr( 'data-large-image' ),
+						large_image_src = img.attr( 'src' ),
 						large_image_w   = img.attr( 'data-large-image-width' ),
 						large_image_h   = img.attr( 'data-large-image-height' ),
 						item            = {
